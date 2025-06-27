@@ -61,7 +61,7 @@ for md=2:length(basedir)
         end
        EEG = pop_selectevent( EEG, 'type',[1:3] ,'deleteevents','on');
 
-        %% 去掉不必要的event
+        %% 脠楼碌么虏禄卤脴脪陋碌脛event
         
         for idev=1:length(deviant_types)
             %%
