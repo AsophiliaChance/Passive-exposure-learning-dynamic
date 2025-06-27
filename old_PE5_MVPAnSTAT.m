@@ -1,4 +1,4 @@
-%%%% µ¼ÈëµÄÊı¾İÓ¦Îªµ¥¸ö±»ÊÔkeep trialµÄÊı¾İ
+%%%% å¯¼å…¥çš„æ•°æ®åº”ä¸ºå•ä¸ªè¢«è¯•keep trialçš„æ•°æ®
 clear;clc;
 
 method = 'lda';
@@ -33,7 +33,7 @@ filename={[filler1,filler2,filler3,'day1_nsubDEVnSTDmvpa.mat'],[filler1,filler2,
 eeglab
 cd('E:\passiveexp22222\data\4thanalysis\MVPA_dataNresult');
 
-trialcluster=1;%Ã¿trialcluster¸ötrialÆ½¾ù
+trialcluster=1;%æ¯trialclusterä¸ªtrialå¹³å‡
 %%
 for md=1:4
     
@@ -222,7 +222,7 @@ for i=[1:3,5]
         set(gca, 'ytick', 0:0.1:0.5);
         set(gca,'FontSize',10,'FontWeight','bold')
         
-        % ·´Ïò Y Öá
+        % åå‘ Y è½´
         set(gca,'YDir','normal');
         
         %title('Time generalization','position',[-0.25 0.8])
@@ -259,7 +259,7 @@ for i=[1:3,5]
     dat=(mean_result{i}.perf{1})';
     tmp=(mean_result{i}.perf_std{1})';
     %legend_labels{i}=['Day1 vs',daynam{i}];
-    % »æÖÆÇúÏß
+    % ç»˜åˆ¶æ›²çº¿
     plot(xval, dat ,'color',mycolor(i,:),'Linewidth',1);
     hold on;
     
@@ -280,11 +280,11 @@ for i=[1:3,5]
     dat=(mean_result{i}.perf{1})';
     tmp=(mean_result{i}.perf_std{1})';
     
-    % ¼ÆËãÌî³äÇøÓòµÄÉÏÏÂ½çÏŞ
+    % è®¡ç®—å¡«å……åŒºåŸŸçš„ä¸Šä¸‹ç•Œé™
     upper_bound = dat + tmp;
     lower_bound = dat - tmp;
     
-    % Ìî³ä±ê×¼²îÇøÓò
+    % å¡«å……æ ‡å‡†å·®åŒºåŸŸ
     fill([xval fliplr(xval)],[lower_bound fliplr(upper_bound)],mycolor(i,:),'edgealpha', '0', 'facealpha', '.1');hold on
     
     text(0.59,0.465,txt{idev},'HorizontalAlignment','right','color',[0.5 0.5 0.5],'FontSize',10,'FontWeight','bold')
