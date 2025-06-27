@@ -7,15 +7,15 @@ channelsToAvg = {'F3', 'F4', 'Fz'};
 
 for md = 1:4
     load(filename{md});channel_idx = find(ismember( Diff_avg{1,1} .label, channelsToAvg));
-    % ¶ÔÃ¿¸öÊÜÊÔÕßºÍÉè±¸½øĞĞÊı¾İÖØÅÅ¼°Æ½¾ù
+    % å¯¹æ¯ä¸ªå—è¯•è€…å’Œè®¾å¤‡è¿›è¡Œæ•°æ®é‡æ’åŠå¹³å‡
     for isub = 1:14
         for idev = 1:2
-            % ¶Ô Diff_avg ÖĞ F3, F4, Fz Í¨µÀÊı¾İÇóÆ½¾ù
+            % å¯¹ Diff_avg ä¸­ F3, F4, Fz é€šé“æ•°æ®æ±‚å¹³å‡
             avg_diff=Diff_avg{isub,idev};
             avg_diff.avg = mean(Diff_avg{isub,idev}.avg(channel_idx,:));
             Diff{md,isub,idev} = avg_diff;
             
-            % Í¬Àí£¬¶Ô STD_avg Óë DEV_avg Ò²¿ÉÒÔ¼ÆËãÆ½¾ùÖµ
+            % åŒç†ï¼Œå¯¹ STD_avg ä¸ DEV_avg ä¹Ÿå¯ä»¥è®¡ç®—å¹³å‡å€¼
             avg_std=STD_avg{isub,idev};
             avg_std.avg  = mean(STD_avg{isub,idev}.avg (channel_idx,:));
             STD{md,isub,idev} = avg_std;
@@ -120,30 +120,30 @@ for md = 1:4
     end
 end
 %%
-% ¼ÙÉèÄãÒÑÓĞÕâÁ½¸ö±äÁ¿£ºamplitude_diff ºÍ latency_diff
-% ÆäÖĞÃ¿¸ö×Ö¶ÎÊÇ 4¡Á14¡Á2 Êı×é£¨day ¡Á subject ¡Á condition£©
+% å‡è®¾ä½ å·²æœ‰è¿™ä¸¤ä¸ªå˜é‡ï¼šamplitude_diff å’Œ latency_diff
+% å…¶ä¸­æ¯ä¸ªå­—æ®µæ˜¯ 4Ã—14Ã—2 æ•°ç»„ï¼ˆday Ã— subject Ã— conditionï¼‰
 
-% µ¥¶ÀÌáÈ¡×Ö¶Î
-amplitude_mmn = amplitude_diff.mmn;   % 4¡Á14¡Á2
+% å•ç‹¬æå–å­—æ®µ
+amplitude_mmn = amplitude_diff.mmn;   % 4Ã—14Ã—2
 amplitude_p3  = amplitude_diff.p3;
 
 latency_mmn = latency_diff.mmn;
 latency_p3  = latency_diff.p3;
 
-% ±£´æ³É¶ÀÁ¢±äÁ¿£¬RÖĞÒ×¶ÁÈ¡£¨±ÜÃâÇ¶Ì×½á¹¹Ìå£©
+% ä¿å­˜æˆç‹¬ç«‹å˜é‡ï¼ŒRä¸­æ˜“è¯»å–ï¼ˆé¿å…åµŒå¥—ç»“æ„ä½“ï¼‰
 save('erp_statisticsdata_simple.mat', ...
      'amplitude_mmn', 'amplitude_p3', ...
      'latency_mmn', 'latency_p3', '-v7');
 
 save('erp_statisticsdata.mat','amplitude_diff','latency_diff');
 %%
-%% 1. ×¼±¸Êı¾İ£¨Ä£Äâ£©
-% ¶ÔÓ¦µÄDay
-set(groot,'defaultAxesTickLength',[0.03 0.06])   % ·ÅÔÚ½Å±¾×î¿ªÍ·
+%% 1. å‡†å¤‡æ•°æ®ï¼ˆæ¨¡æ‹Ÿï¼‰
+% å¯¹åº”çš„Day
+set(groot,'defaultAxesTickLength',[0.03 0.06])   % æ”¾åœ¨è„šæœ¬æœ€å¼€å¤´
 
 clc
 data = cat(3, amplitude_diff.mmn, amplitude_diff.p3);
-figure('Position', [100 100 800 230])    % ¸Ä¿íÒ»µã£¬ºÏÀí²¼¾Ö
+figure('Position', [100 100 800 230])    % æ”¹å®½ä¸€ç‚¹ï¼Œåˆç†å¸ƒå±€
 componentTitles = {'Small MMN','Large MMN','Small P3a','Large P3a'};
 
 for i = 1:4
@@ -153,7 +153,7 @@ for i = 1:4
     Days = repmat((1:4)',14,1);     
     Subjects = repelem((1:14)',4);
     Y = reshape(data(:,:,i),[],1); 
-    n = 14;    % Ã¿×é14¸öÊÜÊÔÕß£¬×¢Òâ¼Ó£¡
+    n = 14;    % æ¯ç»„14ä¸ªå—è¯•è€…ï¼Œæ³¨æ„åŠ ï¼
 
     T = table(Subjects,Days,Y);
     T.Subjects = categorical(T.Subjects);
@@ -175,36 +175,36 @@ for i = 1:4
     sem_Y  = groupsummary(T,"DayNum","std","Y");
     sem_Y.std_Y  = sem_Y.std_Y / sqrt(n);
 
-    % ---- Ö»»­ÖùĞÎÍ¼ + errorbar ----
+    % ---- åªç”»æŸ±å½¢å›¾ + errorbar ----
     bar(days_list, mean_Y.mean_Y, 0.5, 'FaceAlpha',0.5, 'EdgeColor','none');
     errorbar(days_list, mean_Y.mean_Y, sem_Y.std_Y, 'k.', 'LineWidth',1, 'CapSize',5);
 
-ax = gca;                        % µ±Ç° subplot ¾ä±ú
+ax = gca;                        % å½“å‰ subplot å¥æŸ„
 
-if i <= 2                       % -------- Ç°Á½·ù£¨MMN£©--------
-       % ¸ºÖµ³¯ÉÏ
-    ylim(ax,[-3 0])             % 0 µ½ ¨C2 ?V
+if i <= 2                       % -------- å‰ä¸¤å¹…ï¼ˆMMNï¼‰--------
+       % è´Ÿå€¼æœä¸Š
+    ylim(ax,[-3 0])             % 0 åˆ° â€“2 ?V
     ax.YTick    = [-3 -2 -1 0]; 
-    ax.YDir     = 'reverse'; % ¿ÉÑ¡£º¿Ì¶È
-else                            % -------- ºóÁ½·ù£¨P3a£©--------
-    ax.YDir     = 'normal';     % ÕıÖµ³¯ÉÏ£¨Ä¬ÈÏ£©
-    ylim(ax,[0 3])              % 0 µ½ 3 ?V
-    ax.YTick    = 0:1:3;        % ¿ÉÑ¡£º¿Ì¶È
+    ax.YDir     = 'reverse'; % å¯é€‰ï¼šåˆ»åº¦
+else                            % -------- åä¸¤å¹…ï¼ˆP3aï¼‰--------
+    ax.YDir     = 'normal';     % æ­£å€¼æœä¸Šï¼ˆé»˜è®¤ï¼‰
+    ylim(ax,[0 3])              % 0 åˆ° 3 ?V
+    ax.YTick    = 0:1:3;        % å¯é€‰ï¼šåˆ»åº¦
 end
     
 
     xticks(days_list)
    % xlim([0.5 4.5])
-   % grid on   % ´ò¿ªÍø¸ñ¸ü×¨Òµ
+   % grid on   % æ‰“å¼€ç½‘æ ¼æ›´ä¸“ä¸š
 set(gca, 'FontSize', 10);
 if i==1
 xlabel('Day', 'FontSize', 15,'FontWeight', 'bold');
-ylabel('Amplitude (¦ÌV)', 'FontSize', 15,'FontWeight', 'bold');
+ylabel('Amplitude (Î¼V)', 'FontSize', 15,'FontWeight', 'bold');
 end
 title(componentTitles{i}, 'FontSize', 15)
 set(findall(gcf,'-property','FontWeight'), 'FontWeight', 'bold')
-% --- SIGNIFICANCE: Day 2¨C4 vs Day 1 -----------------------------
- % --- SIGNIFICANCE: Day 2¨C4 vs Day 1 -----------------------------
+% --- SIGNIFICANCE: Day 2â€“4 vs Day 1 -----------------------------
+ % --- SIGNIFICANCE: Day 2â€“4 vs Day 1 -----------------------------
     [~,~,FE] = fixedEffects(lme,'DFMethod','Satterthwaite');
    amplitudeFE{i}= FE;
    disp(FE)
@@ -253,13 +253,13 @@ sgtitle('Amplitude', 'FontWeight','bold', 'FontSize',20);
 print(gcf,'-dtiff','-r400','bar_amplitude.tif');  % saves 400?dpi TIFF in current folder
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 1. ×¼±¸Êı¾İ£¨Ä£Äâ£©
-% ¶ÔÓ¦µÄDay
-set(groot,'defaultAxesTickLength',[0.03 0.06])   % ·ÅÔÚ½Å±¾×î¿ªÍ·
+% 1. å‡†å¤‡æ•°æ®ï¼ˆæ¨¡æ‹Ÿï¼‰
+% å¯¹åº”çš„Day
+set(groot,'defaultAxesTickLength',[0.03 0.06])   % æ”¾åœ¨è„šæœ¬æœ€å¼€å¤´
 
 
 data = cat(3, latency_diff.mmn, latency_diff.p3);
-figure('Position', [100 100 800 230])    % ¸Ä¿íÒ»µã£¬ºÏÀí²¼¾Ö
+figure('Position', [100 100 800 230])    % æ”¹å®½ä¸€ç‚¹ï¼Œåˆç†å¸ƒå±€
 componentTitles = {'Small MMN','Large MMN','Small P3a','Large P3a'};
 
 for i = 1:4
@@ -269,7 +269,7 @@ for i = 1:4
     Days = repmat((1:4)',14,1);     
     Subjects = repelem((1:14)',4);
     Y = reshape(data(:,:,i),[],1); 
-    n = 14;    % Ã¿×é14¸öÊÜÊÔÕß£¬×¢Òâ¼Ó£¡
+    n = 14;    % æ¯ç»„14ä¸ªå—è¯•è€…ï¼Œæ³¨æ„åŠ ï¼
 
     T = table(Subjects,Days,Y);
     T.Subjects = categorical(T.Subjects);
@@ -289,27 +289,27 @@ for i = 1:4
     sem_Y  = groupsummary(T,"DayNum","std","Y");
     sem_Y.std_Y  = sem_Y.std_Y / sqrt(n);
 
-    % ---- Ö»»­ÖùĞÎÍ¼ + errorbar ----
+    % ---- åªç”»æŸ±å½¢å›¾ + errorbar ----
     bar(days_list, 1000*(mean_Y.mean_Y), 0.5, 'FaceAlpha',0.5, 'EdgeColor','none');
     errorbar(days_list, 1000*(mean_Y.mean_Y), 1000*(sem_Y.std_Y), 'k.', 'LineWidth',1, 'CapSize',5);
 
-ax = gca;                        % µ±Ç° subplot ¾ä±ú
+ax = gca;                        % å½“å‰ subplot å¥æŸ„
 
-if i <= 2                       % -------- Ç°Á½·ù£¨MMN£©--------
-       % ¸ºÖµ³¯ÉÏ
-    ylim(ax,[190 260])             % 0 µ½ ¨C2 ?V
+if i <= 2                       % -------- å‰ä¸¤å¹…ï¼ˆMMNï¼‰--------
+       % è´Ÿå€¼æœä¸Š
+    ylim(ax,[190 260])             % 0 åˆ° â€“2 ?V
     ax.YTick    = 190:20:260; 
     %ax.YDir     = 'reverse'; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-else                            % -------- ºóÁ½·ù£¨P3a£©--------
-    ax.YDir     = 'normal';     % ÕıÖµ³¯ÉÏ£¨Ä¬ÈÏ£©
-    ylim(ax,[280 350])              % 0 µ½ 3 ?V
-    ax.YTick    = 280:20:350;        % ¿ÉÑ¡£º¿Ì¶È
+else                            % -------- åä¸¤å¹…ï¼ˆP3aï¼‰--------
+    ax.YDir     = 'normal';     % æ­£å€¼æœä¸Šï¼ˆé»˜è®¤ï¼‰
+    ylim(ax,[280 350])              % 0 åˆ° 3 ?V
+    ax.YTick    = 280:20:350;        % å¯é€‰ï¼šåˆ»åº¦
 end
 %     title(componentTitles{i})
 
     xticks(days_list)
    % xlim([0.5 4.5])
-   % grid on   % ´ò¿ªÍø¸ñ¸ü×¨Òµ
+   % grid on   % æ‰“å¼€ç½‘æ ¼æ›´ä¸“ä¸š
 set(gca, 'FontSize', 10);
 if i==1
     xlabel('Day', 'FontSize', 15,'FontWeight', 'bold');
@@ -317,8 +317,8 @@ if i==1
 end
 title(componentTitles{i}, 'FontSize', 15)
 set(findall(gcf,'-property','FontWeight'), 'FontWeight', 'bold')
-% --- SIGNIFICANCE: Day 2¨C4 vs Day 1 -----------------------------
- % --- SIGNIFICANCE: Day 2¨C4 vs Day 1 -----------------------------
+% --- SIGNIFICANCE: Day 2â€“4 vs Day 1 -----------------------------
+ % --- SIGNIFICANCE: Day 2â€“4 vs Day 1 -----------------------------
     [~,~,FE] = fixedEffects(lme,'DFMethod','Satterthwaite');
    latencyFE{i}= FE;
    disp(FE)
@@ -422,7 +422,7 @@ amplitude_stim1.p3=cat(3, amplitude_std.p3(:, :, 1), amplitude_dev.p3(:, :,1));
 amplitude_stim2.mmn=cat(3, amplitude_std.mmn(:, :, 2), amplitude_dev.mmn(:, :,2));
 amplitude_stim2.p3=cat(3, amplitude_std.p3(:, :, 2), amplitude_dev.p3(:, :,2));
 %% anova
-%% MATLAB ½Å±¾£º¶Ô4¡Á14¡Á2¡Á6Êı¾İ½øĞĞÖØ¸´²âÁ¿·½²î·ÖÎö
+%% MATLAB è„šæœ¬ï¼šå¯¹4Ã—14Ã—2Ã—6æ•°æ®è¿›è¡Œé‡å¤æµ‹é‡æ–¹å·®åˆ†æ
 
 
 data1{1}=latency_diff.mmn;
@@ -471,7 +471,7 @@ fprintf('window length: %.3f\n', winlenght(iwin));
   
 
     % Data reshaping
-    data_2D = reshape(data, 14, []);  % Resulting matrix is 14¡Á48
+    data_2D = reshape(data, 14, []);  % Resulting matrix is 14Ã—48
 %{
     %% Normality Test (Lilliefors Test)
     fprintf('Normality Test (Lilliefors Test):\n');
@@ -649,7 +649,7 @@ end
 diary off;
 %% each participant waveform
 for idev = 1:2
-    figure;  % ÎªÃ¿¸ö idev ´´½¨Ò»¸öĞÂÍ¼
+    figure;  % ä¸ºæ¯ä¸ª idev åˆ›å»ºä¸€ä¸ªæ–°å›¾
     for md = 1:4
         subplot(2,2,md);
         hold on;
@@ -664,13 +664,13 @@ for idev = 1:2
                    set(gca, 'XTick', -0.1:0.05:0.6);
        grid on;
     end
-    % ĞÂ°æ±¾ MATLAB ¿ÉÓÃ sgtitle Ìí¼ÓÕûÌå±êÌâ
+    % æ–°ç‰ˆæœ¬ MATLAB å¯ç”¨ sgtitle æ·»åŠ æ•´ä½“æ ‡é¢˜
     sgtitle(['Difference wave ' num2str(idev)]);
 
 end
 
 for idev = 1:2
-    figure;  % ÎªÃ¿¸ö idev ´´½¨Ò»¸öĞÂÍ¼
+    figure;  % ä¸ºæ¯ä¸ª idev åˆ›å»ºä¸€ä¸ªæ–°å›¾
     for md = 1:4
         subplot(2,2,md);
         hold on;
@@ -685,13 +685,13 @@ for idev = 1:2
         set(gca, 'XTick', -0.1:0.05:0.6);
        grid on;
     end
-    % ĞÂ°æ±¾ MATLAB ¿ÉÓÃ sgtitle Ìí¼ÓÕûÌå±êÌâ
+    % æ–°ç‰ˆæœ¬ MATLAB å¯ç”¨ sgtitle æ·»åŠ æ•´ä½“æ ‡é¢˜
     sgtitle(['STD ' num2str(idev)]);
  
 end
 
 for idev = 1:2
-    figure;  % ÎªÃ¿¸ö idev ´´½¨Ò»¸öĞÂÍ¼
+    figure;  % ä¸ºæ¯ä¸ª idev åˆ›å»ºä¸€ä¸ªæ–°å›¾
     for md = 1:4
         subplot(2,2,md);
         hold on;
@@ -706,7 +706,7 @@ for idev = 1:2
                   set(gca, 'XTick', -0.1:0.05:0.6);
        grid on; 
     end
-    % ĞÂ°æ±¾ MATLAB ¿ÉÓÃ sgtitle Ìí¼ÓÕûÌå±êÌâ
+    % æ–°ç‰ˆæœ¬ MATLAB å¯ç”¨ sgtitle æ·»åŠ æ•´ä½“æ ‡é¢˜
     sgtitle(['DEV ' num2str(idev)]);
 
 end
@@ -737,13 +737,13 @@ end
             leg.ItemTokenSize = [9,9];
 
         end
-                    % ÔÚ×ø±ê (0, -2) ´¦Ìí¼ÓÎÄ±¾ "190-260ms"
+                    % åœ¨åæ ‡ (0, -2) å¤„æ·»åŠ æ–‡æœ¬ "190-260ms"
 
         
         set(gca, 'FontSize', 10, 'fontweight', 'bold');
         axis([-0.100 0.6 -2.4 2.3]);
         
-        % ÉèÖÃ x Öá¿Ì¶È£¬Ã¿¸ô 50ms (0.05Ãë)Ò»Ìõ
+        % è®¾ç½® x è½´åˆ»åº¦ï¼Œæ¯éš” 50ms (0.05ç§’)ä¸€æ¡
        set(gca, 'XTick', -0.1:0.05:0.6);
        grid on;
     end
@@ -773,13 +773,13 @@ for idev=1:2
             leg.ItemTokenSize = [9,9];
 
         end
-                    % ÔÚ×ø±ê (0, -2) ´¦Ìí¼ÓÎÄ±¾ "190-260ms"
+                    % åœ¨åæ ‡ (0, -2) å¤„æ·»åŠ æ–‡æœ¬ "190-260ms"
 
         
         set(gca, 'FontSize', 10, 'fontweight', 'bold');
         axis([-0.100 0.6 -2.4 2.3]);
         
-        % ÉèÖÃ x Öá¿Ì¶È£¬Ã¿¸ô 50ms (0.05Ãë)Ò»Ìõ
+        % è®¾ç½® x è½´åˆ»åº¦ï¼Œæ¯éš” 50ms (0.05ç§’)ä¸€æ¡
        set(gca, 'XTick', -0.1:0.05:0.6);
        grid on;
     end
