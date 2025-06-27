@@ -25,7 +25,7 @@ filename={[filler1,filler2,filler3,'day1_nsubavg.mat'],[filler1,filler2,filler3,
 %%
 for md=1:4
     load(filename{md});
-    %reshape 每个变量
+    %reshape 脙驴赂枚卤盲脕驴
     for isub=1:14
         for idev=1:2
     Diff{md,isub,idev}=Diff_avg{isub,idev};
