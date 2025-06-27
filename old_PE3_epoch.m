@@ -60,7 +60,7 @@ for md=1:length(basedir)
         end
             end
  
-        %% 去掉不必要的event
+        %% 脠楼碌么虏禄卤脴脪陋碌脛event
         
         for idev=1:length(deviant_types)
             %%                        
