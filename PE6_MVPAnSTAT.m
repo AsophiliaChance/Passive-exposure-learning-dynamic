@@ -1,4 +1,4 @@
-%%%% µ¼ÈëµÄÊı¾İÓ¦Îªµ¥¸ö±»ÊÔkeep trialµÄÊı¾İ
+%%%% å¯¼å…¥çš„æ•°æ®åº”ä¸ºå•ä¸ªè¢«è¯•keep trialçš„æ•°æ®
 clear;clc;
 
 method = 'lda';
@@ -33,7 +33,7 @@ filename={[filler1,filler2,filler3,'day1_nsubDEVnSTDmvpa_re2.mat'],[filler1,fill
 eeglab
 cd('G:\passiveexp22222\data\4thanalysis\MVPA_dataNresult');
 
-trialcluster=1;%Ã¿trialcluster¸ötrialÆ½¾ù
+trialcluster=1;%æ¯trialclusterä¸ªtrialå¹³å‡
 %%
 for md=1:4
     
@@ -126,7 +126,7 @@ for idev=1:2
     end
     
 end
-%% temporal decodingµ¥Ñù±¾t¼ìÑé % 16-18 20-23
+%% temporal decodingå•æ ·æœ¬tæ£€éªŒ % 16-18 20-23
 win1=15:18; win2=20:23;
 for idev=1:2
     i=1;
@@ -205,8 +205,8 @@ for idev=1:2
             axis([-0.100 0.6 0.48 0.54]);
             xticks([0,0.2, 0.4, 0.6]);
             
-            % ÉèÖÃ y Öá¿Ì¶ÈÎ»ÖÃ
-            yticks([0.48, 0.50, 0.52,0.54,0.56,0.58,0.60]);ytickformat('%.2f');  % ¸ñÊ½»¯Îª±£ÁôÁ½Î»Ğ¡Êı
+            % è®¾ç½® y è½´åˆ»åº¦ä½ç½®
+            yticks([0.48, 0.50, 0.52,0.54,0.56,0.58,0.60]);ytickformat('%.2f');  % æ ¼å¼åŒ–ä¸ºä¿ç•™ä¸¤ä½å°æ•°
             set(gca, 'box', 'off');
             axis square;
             set(gca, 'TickLength', [0.03, 0.05]);
@@ -216,7 +216,7 @@ for idev=1:2
             change={'Small change','Large change'};
             annotation('textbox', [0.3, 0.9, 0.4, 0.05], ... 
                 'String',change{idev}, ...
-                'EdgeColor', 'none', ...  % È¡Ïû±ß¿ò
+                'EdgeColor', 'none', ...  % å–æ¶ˆè¾¹æ¡†
                 'HorizontalAlignment', 'center', ...
                 'FontWeight', 'bold', 'FontSize', 10);
         end
@@ -227,7 +227,7 @@ for idev=1:2
     print(filename, '-dtiff', '-r400');
 end
 
-%% temporal generalizationµ¥Ñù±¾t¼ìÑé % 15-18 20-23
+%% temporal generalizationå•æ ·æœ¬tæ£€éªŒ % 15-18 20-23
 dataMMN=[];dataP3a=[];
 win1=15:18; win2=20:23;
 for idev=1:2
@@ -251,28 +251,28 @@ for idev=1:2
     end
 end
 save([filler1,filler2,filler3,filler4,method,'_alltime_mvpa_permutation_std3_timettest.mat'],'pMMN','pP3a');
-% temporal generalization ±í¸ñ
-% ´´½¨Ò»¸ö 5x8 µÄ cell Êı×é£¬ÓÃÓÚ´æ·Å±í¸ñÊı¾İ
+% temporal generalization è¡¨æ ¼
+% åˆ›å»ºä¸€ä¸ª 5x8 çš„ cell æ•°ç»„ï¼Œç”¨äºå­˜æ”¾è¡¨æ ¼æ•°æ®
 tableData = cell(5,8);
 
-% µÚÒ»ĞĞµÚÈıÖÁµÚ°ËÁĞ£ºÉèÖÃ±È½Ï×é±êÌâ
+% ç¬¬ä¸€è¡Œç¬¬ä¸‰è‡³ç¬¬å…«åˆ—ï¼šè®¾ç½®æ¯”è¾ƒç»„æ ‡é¢˜
 headers = {'Day1 vs Day2', 'Day1 vs Day3', 'Day1 vs Day4', 'Day2 vs Day3', 'Day2 vs Day4', 'Day3 vs Day4'};
 tableData(1,3:8) = headers;
 
-% µÚÒ»ÁĞ£ºµÚ2-3ĞĞÎª 'Small change'£¬µÚ4-5ĞĞÎª 'Large change'
+% ç¬¬ä¸€åˆ—ï¼šç¬¬2-3è¡Œä¸º 'Small change'ï¼Œç¬¬4-5è¡Œä¸º 'Large change'
 tableData{2,1} = 'Small change';
 tableData{3,1} = 'Small change';
 tableData{4,1} = 'Large change';
 tableData{5,1} = 'Large change';
 
-% µÚ¶şÁĞ£ºµÚ2ĞĞºÍµÚ4ĞĞÎª 'MMN'£¬µÚ3ĞĞºÍµÚ5ĞĞÎª 'P3a'
+% ç¬¬äºŒåˆ—ï¼šç¬¬2è¡Œå’Œç¬¬4è¡Œä¸º 'MMN'ï¼Œç¬¬3è¡Œå’Œç¬¬5è¡Œä¸º 'P3a'
 tableData{2,2} = 'MMN';
 tableData{3,2} = 'P3a';
 tableData{4,2} = 'MMN';
 tableData{5,2} = 'P3a';
 
-% Ìî³äÊı¾İ²¿·Ö£¨µÚ2-5ĞĞ£¬µÚÈıÖÁµÚ°ËÁĞ£©£¬´Ë´¦ÒÔËæ»úÊıÎªÀı
-data = [pMMN';pP3a'];  % Éú³É 4x6 µÄËæ»úÊı¾İ
+% å¡«å……æ•°æ®éƒ¨åˆ†ï¼ˆç¬¬2-5è¡Œï¼Œç¬¬ä¸‰è‡³ç¬¬å…«åˆ—ï¼‰ï¼Œæ­¤å¤„ä»¥éšæœºæ•°ä¸ºä¾‹
+data = [pMMN';pP3a'];  % ç”Ÿæˆ 4x6 çš„éšæœºæ•°æ®
 temp = data(2,:);
 data(2,:) = data(4,:);
 data(4,:) = temp;
@@ -283,10 +283,10 @@ for i = 1:4
     end
 end
 
-% ½«Êı¾İÖĞĞ¡ÓÚ 0.0083 µÄÊıÖµÌæ»»ÎªĞÇºÅ '*'
-for i = 2:5         % ĞĞ£ºÊı¾İ´ÓµÚ2ĞĞ¿ªÊ¼£¨²»°üº¬±êÌâĞĞ£©
-    for j = 3:8     % ÁĞ£ºµÚÈıÁĞµ½µÚ°ËÁĞÎªÊı¾İ
-        % ÅĞ¶Ïµ±Ç°µ¥Ôª¸ñÊÇ·ñÎªÊıÖµÇÒĞ¡ÓÚ 0.0083
+% å°†æ•°æ®ä¸­å°äº 0.0083 çš„æ•°å€¼æ›¿æ¢ä¸ºæ˜Ÿå· '*'
+for i = 2:5         % è¡Œï¼šæ•°æ®ä»ç¬¬2è¡Œå¼€å§‹ï¼ˆä¸åŒ…å«æ ‡é¢˜è¡Œï¼‰
+    for j = 3:8     % åˆ—ï¼šç¬¬ä¸‰åˆ—åˆ°ç¬¬å…«åˆ—ä¸ºæ•°æ®
+        % åˆ¤æ–­å½“å‰å•å…ƒæ ¼æ˜¯å¦ä¸ºæ•°å€¼ä¸”å°äº 0.0083
         if isnumeric(tableData{i,j}) && tableData{i,j} < 0.0083
             tableData{i,j} = '*';
         else
@@ -297,7 +297,7 @@ for i = 2:5         % ĞĞ£ºÊı¾İ´ÓµÚ2ĞĞ¿ªÊ¼£¨²»°üº¬±êÌâĞĞ£©
     end
 end
 
-% ÏÔÊ¾±í¸ñ
+% æ˜¾ç¤ºè¡¨æ ¼
 disp(tableData);
 
 
