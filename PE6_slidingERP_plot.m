@@ -11,7 +11,7 @@ channelsToAvg = {'F3', 'F4', 'Fz'};
 for md=1:4
     load(filename{md});
     chanIdx = find(ismember(DEV_keeptrials_nsub{1,1}.label, channelsToAvg));
-    %reshape Ã¿¸ö±äÁ¿
+    %reshape æ¯ä¸ªå˜é‡
     for isub=1:14
         for idev=1:2
             Diff{md,isub,idev}=squeeze(mean(clssi_Diff{isub,idev}.trial(:,chanIdx, :),2));
@@ -39,8 +39,8 @@ time=DEV_keeptrials_nsub{1,1}.time;ax=[];
         for md=1:4
             ax{i}=subplot(2,4,i);
     pos = get(ax{i}, 'Position');
-    % ¸ù¾İĞèÒªÊÖ¶¯µ÷Õû pos ÖĞµÄ [left, bottom, width, height]
-    % ÀıÈç¼õÉÙ×óÓÒ¼ä¾à
+    % æ ¹æ®éœ€è¦æ‰‹åŠ¨è°ƒæ•´ pos ä¸­çš„ [left, bottom, width, height]
+    % ä¾‹å¦‚å‡å°‘å·¦å³é—´è·
     %pos(1) = pos(1) + 0.02;
     pos(3) = pos(3) + 0.005;
     set(ax{i}, 'Position', pos);
@@ -97,7 +97,7 @@ end
 
             %
             X=[];Y=[];upper=[];lower=[];
-            % ¼ÆËãÉÏÏÂ±ß½ç
+            % è®¡ç®—ä¸Šä¸‹è¾¹ç•Œ
             y=slide_data_gavg;
             err= slide_std/sqrt(14);
             x=1:400;
@@ -128,28 +128,28 @@ end
             set(gca,'fontsize',8,'LineWidth',1.5,'fontweight','bold');
             box off
             set(gca,'XTick',[1,100,200,300,400]);
-            %pos = get(gca, 'Position');  % »ñÈ¡µÚÎå¸ö×ÓÍ¼µÄÎ»ÖÃ [x, y, width, height]
-            % ÔÚ×ÓÍ¼×ó²à´´½¨Ò»¸öĞÂµÄ¡¢Í¸Ã÷µÄ×ø±êÖáÓÃÓÚ·ÅÖÃĞı×ªÎÄ±¾
+            %pos = get(gca, 'Position');  % è·å–ç¬¬äº”ä¸ªå­å›¾çš„ä½ç½® [x, y, width, height]
+            % åœ¨å­å›¾å·¦ä¾§åˆ›å»ºä¸€ä¸ªæ–°çš„ã€é€æ˜çš„åæ ‡è½´ç”¨äºæ”¾ç½®æ—‹è½¬æ–‡æœ¬
             if i==2
             hTextAxes = axes('Position', [pos(1)-0.095, pos(2)-0.01, 0.04, pos(4)]);
             text(0.5, 0.5, 'MMN', 'FontWeight', 'bold', 'FontSize', 9, ...
                 'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle', 'Rotation', 90);
-            set(hTextAxes, 'Visible', 'off', 'HitTest', 'off');  % Òş²Ø×ø±êÖáÏßÓë¿Ì¶È
+            set(hTextAxes, 'Visible', 'off', 'HitTest', 'off');  % éšè—åæ ‡è½´çº¿ä¸åˆ»åº¦
             end
              if i==6
             hTextAxes = axes('Position', [pos(1)-0.09, pos(2)-0.01, 0.04, pos(4)]);
             text(0.5, 0.5, 'P3a', 'FontWeight', 'bold', 'FontSize', 9, ...
                 'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle', 'Rotation', 90);
-            set(hTextAxes, 'Visible', 'off', 'HitTest', 'off');  % Òş²Ø×ø±êÖáÏßÓë¿Ì¶È
+            set(hTextAxes, 'Visible', 'off', 'HitTest', 'off');  % éšè—åæ ‡è½´çº¿ä¸åˆ»åº¦
              end
 
         end
     
     end
 
-% ÔÚÕû¸ö figure ÉÏ´´½¨Ò»¸öÒş²ØµÄ×ø±êÖá
+% åœ¨æ•´ä¸ª figure ä¸Šåˆ›å»ºä¸€ä¸ªéšè—çš„åæ ‡è½´
 axes('Position',[0 0 1 1],'Visible','off');
-% ÔÚ¹éÒ»»¯×ø±êÖĞÌí¼ÓĞı×ª90¡ãµÄÎÄ±¾
+% åœ¨å½’ä¸€åŒ–åæ ‡ä¸­æ·»åŠ æ—‹è½¬90Â°çš„æ–‡æœ¬
 % text(0.08, 0.5, 'Standard', 'Units', 'normalized', ...
 %     'Rotation', 90, 'HorizontalAlignment', 'center', ...
 %     'VerticalAlignment', 'middle', 'FontSize', 12, 'FontWeight', 'bold');
